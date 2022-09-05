@@ -10,14 +10,16 @@ from time import sleep
 from bs4 import BeautifulSoup as bs
 from tkinter import messagebox
 from tkinter import Tk
+import getpass
 
+user = getpass.getuser()
 
 url_metamask = 'chrome-extension://nkbihfbeogaeaoehlefnkodbefgpgknn/home.html#restore-vault'
 url_pegaxy = 'https://play.pegaxy.io/renting?tab=fee&sortBy=price&sortType=ASC'
 
 options = Options()
 # Caminho dos dados do chrome
-options.add_argument("user-data-dir=C:/Users/junio/AppData/Local/Google/Chrome/User Data/")
+options.add_argument(f"user-data-dir=C:/Users/{user}/AppData/Local/Google/Chrome/User Data/")
 
 driver = Chrome(service=Service(ChromeDriverManager().install()), options=options)
 sleep(1)
@@ -30,15 +32,15 @@ wa.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div/div[3]
 
 # Digita a frase no campo indicado
 frase = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[3]/div/div/div/form/div[1]/div/input')
-frase.send_keys('region similar author round between winner traffic glance arrow forest tree frozen')
+frase.send_keys('')
 
 # Digita a senha no campo indicado
 senha = driver.find_element(By.ID, 'password')
-senha.send_keys('eraldo213243122334')
+senha.send_keys('')
 
 # Digita a mesma senha para confirmar
 confirm = driver.find_element(By.ID, 'confirm-password')
-confirm.send_keys('eraldo213243122334')
+confirm.send_keys('')
 
 # Clica em restaurar
 restaurar = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[3]/div/div/div/form/button')
@@ -165,12 +167,12 @@ while not rec:
         continue
 
 confirm2 = driver.find_element(By.XPATH, '/html/body/div[1]/div/div[2]/div/div[4]/div[3]/footer/button[2]')
-# confirm2.click()
+confirm2.click()
 
-# root = Tk()
-# root.destroy()
-# messagebox.showinfo('Pegaxy', 'Cavalo alugado com sucesso!')
+root = Tk()
+root.destroy()
+messagebox.showinfo('Pegaxy', 'Cavalo alugado com sucesso!')
 
 
-sleep(6000)
-# driver.quit()
+# sleep(6000)
+driver.quit()
